@@ -1,0 +1,22 @@
+#!/bin/bash
+#############################################
+#if any this is wrong mail liuhb@dtdream.com
+
+echo "welcome to use lhb's shell"
+echo "with this shell you can install ntfs-3g"
+
+#############################################
+#below will check if your linux has install this rpm
+
+if test -z $(rpm -qa |grep ntfs)
+then 
+	echo "you have not installed the ntfs-3g  this shell will move on "
+	rpm -ivh ./ntfs-3g-2015.3.14-1.el7.x86_64.rpm
+	rpm -ivh ./ntfs-3g-devel-2015.3.14-1.el7.x86_64.rpm
+	echo "sucessed!"
+else 
+	echo " you have installed the ntfs-3g just use it! "
+fi
+#############################################
+
+
