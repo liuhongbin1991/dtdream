@@ -1,0 +1,46 @@
+#!/bin/bash
+echo "welcome to use lhb's shell"
+newyumdir=$(pwd)
+newyumfile="/root/rhel-source.repo"
+#####################################
+#default source is for version 7 if your system is 6 then we need make a change
+if grep -qc "7" /etc/redhat-release
+then
+        echo "your system version is 7.0"
+else
+if grep -qc "6" /etc/redhat-release
+then
+        echo "your system version is 6.0"
+        sed -i s/-7/-6/g ./rhel-source.repo
+else
+        echo "other system version 5???"
+	sed -i s/-7/-5/g ./rhel-source.repo
+fi
+fi
+######################################
+#below will check your system version and renew the source
+#fuck shell
+
+######################################
+#below is a check for default source
+#if already exits i will remove it
+#fuck shell
+if [ -a /etc/yum.repos.d/rhel-source.repo ]
+then 
+	echo "you have a default source remove it" #lack of judgement
+	rm /etc/yum.repos.d/rhel-source.repo
+else
+	echo "continue to install"
+fi
+######################################
+#below will move the new source to the default dir
+#fuck shell
+echo $newyumdir
+cp ./rhel-source.repo /etc/yum.repos.d/
+yum clean all
+if [ -w /etc/yum.repos.d/rhel-source.repo ];
+then 
+	echo "success and now you can use the centos's free source"
+else
+	echo "failed check it"
+fi
