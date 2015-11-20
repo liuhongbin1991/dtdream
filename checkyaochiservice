@@ -13,7 +13,7 @@ do
     checkingservice=`cat $workdir/servicelist |awk "NR==$i"`;
     echo checking $checkingservice;
     /mnt/shuguang/cmdbClient.py host /yaochi/$checkingservice=host >iplist;
-    pssh -P -h iplist "curl --connect-timeout 101 -v  http://localhost:18080/$checkingservice/check_health" >log.log;
+    pssh -P -h iplist "curl --connect-timeout 100 -v  http://localhost:18080/$checkingservice/check_health" >log.log;
     if grep -qc "ok" log.log
     then
         echo "$checkingservice is ok"
