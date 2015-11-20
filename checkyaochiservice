@@ -8,16 +8,25 @@
 # Function: used for check all yaochi serivce except dubbo  zookpeer    metaq
 #***************************************************************#
 workdir=`pwd`
-for ((i=1; i<=55; i++));
-do
-    checkingservice=`cat $workdir/servicelist |awk "NR==$i"`;
-    echo checking $checkingservice;
-    /mnt/shuguang/cmdbClient.py host /yaochi/$checkingservice=host >iplist;
-    pssh -P -h iplist "curl --connect-timeout 100 -v  http://localhost:18080/$checkingservice/check_health" >log.log;
-    if grep -qc "ok" log.log
-    then
-        echo "$checkingservice is ok"
-    else
-        echo "check $checkingservice failed"
-    fi;
-done;
+if  [ -z $1 ]
+then 
+       echo "this shell must choose {checkyc|rs}";
+elif [ $1 = "checkyc" ]
+then
+	for ((i=1; i<=55; i++));
+	do
+	    checkingservice=`cat $workdir/servicelist |awk "NR==$i"`;
+	    echo checking $checkingservice;
+	    /mnt/shuguang/cmdbClient.py host /yaochi/$checkingservice=host >iplist;
+	    pssh -P -h iplist "curl --connect-timeout 100 -v  http://localhost:18080/$checkingservice/check_health" >log.log;
+	    if grep -qc "ok" log.log
+	    then
+	        echo "$checkingservice is ok"
+	    else
+	        echo "check $checkingservice failed"
+	    fi;
+	done;
+elif [ $1 = "rs" ]
+then
+	echo "this restartingservice is developing please wait";
+fi
