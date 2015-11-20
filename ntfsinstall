@@ -1,10 +1,9 @@
-#!/bin/bash
+!/bin/bash
 #############################################
 #if any this is wrong mail liuhb@dtdream.com
 
 echo "welcome to use lhb's shell"
-echo "with this shell you can install ntfs-3g"
-
+echo "with this shell you can install ntfs-3g before"
 #############################################
 #below will check if your linux has install this rpm
 
