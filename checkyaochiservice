@@ -8,12 +8,13 @@
 # Function: used for check all yaochi serivce except dubbo  zookpeer    metaq
 #***************************************************************#
 workdir=`pwd`
+times=`cat $workdir/servicelist |wc -l`
 if  [ -z $1 ]
 then 
        echo "this shell must choose {checkyc|rs}";
 elif [ $1 = "checkyc" ]
 then
-	for ((i=1; i<=55; i++));
+	for ((i=1; i<=$times; i++));
 	do
 	    checkingservice=`cat $workdir/servicelist |awk "NR==$i"`;
 	    echo checking $checkingservice;
@@ -28,5 +29,11 @@ then
 	done;
 elif [ $1 = "rs" ]
 then
-	echo "this restartingservice is developing please wait";
+	echo "this restartingservice is developing please wait";i
+    if [ $2 = "console" ]
+    then 
+        echo "console"
+    else
+        echo "plsease the level {console|L1|L2}"
+    fi
 fi
