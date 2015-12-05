@@ -3,7 +3,7 @@
 # to `latest`! See
 # https://github.com/phusion/baseimage-docker/blob/master/Changelog.md
 # for a list of version numbers.
-# test
+# http://phusion.github.io/baseimage-docker/
 FROM phusion/baseimage:<VERSION>
 
 # Use baseimage-docker's init system.
