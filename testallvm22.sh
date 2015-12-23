@@ -28,4 +28,5 @@ for i in `cat /tmp/allrunningvm`;do go2which $i|grep 'instance_ips' |awk -F '|' 
 echo "================"
 date
 for i in `cat /tmp/allvmaliip`;do for (( j = 1; j <= 100; j++));do nc -zvw3 $i 22; done ;done 2>/tmp/allvmrefuse 1>/dev/null
-cat /tmp/allvmrefuse |sort |uniq 
+cat /tmp/allvmrefuse |sort |uniq
+ 
