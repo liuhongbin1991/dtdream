@@ -52,7 +52,6 @@ else
 #   elif $judgement = "no"
 #      read -p "input the interface's name upstairs:" existedbridge
 #      ip link 
-#   
 
 fi
 
